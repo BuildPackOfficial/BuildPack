@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildPack — Professional Construction Handover System</title>
+    <meta name="description" content="The construction industry's missing logbook. BuildPack creates complete, professional handover documents that win repeat business.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy:      #0f1f38;
+            --navy-mid:  #1a3456;
+            --navy-light:#2d4a6f;
+            --blue:      #2a6fdb;
+            --green:     #1a9e6e;
+            --sand:      #f4f1ea;
+            --sand-dark: #e8e4d8;
+            --grey:      #5a6478;
+            --grey-light:#9aa3b2;
+            --white:     #ffffff;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', system-ui, sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid rgba(15, 31, 56, 0.08);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-button {
+            background: var(--blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #1e5cc4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(42, 111, 219, 0.3);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(42,111,219,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.35rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* PROBLEM SECTION */
+        .problem {
+            background: var(--sand);
+            padding: 5rem 2rem;
+        }
+
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .problem p {
+            font-size: 1.2rem;
+            color: var(--grey);
+            line-height: 1.7;
+        }
+
+        /* BENEFITS */
+        .benefits {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .benefits-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--navy);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .benefit-card {
+            background: var(--sand);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .benefit-card p {
+            color: var(--grey);
+            line-height: 1.7;
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            background: var(--navy);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .how-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .how-content h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--blue);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95rem;
+        }
+
+        /* CONTACT FORM */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--sand);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .contact .intro {
+            text-align: center;
+            color: var(--grey);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid rgba(15, 31, 56, 0.15);
+            border-radius: 8px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--green);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #148a5e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 158, 110, 0.3);
+        }
+
+        .success-message {
+            display: none;
+            background: var(--green);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title,
+            .problem h2,
+            .contact h2,
+            .how-content h2 {
+                font-size: 2rem;
+            }
+
+            .benefits-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .hero,
+            .problem,
+            .benefits,
+            .how-it-works,
+            .contact {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">BuildPack</a>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The handover that wins you the next project</h1>
+            <p class="subtitle">BuildPack creates complete, professional construction handover documents. Stop apologising for scattered paperwork — hand over a property record your clients will treasure.</p>
+            <a href="#contact" class="cta-button">Request Early Access</a>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem">
+        <div class="problem-content">
+            <h2>A car logbook, but for houses</h2>
+            <p>When you buy a used car, you get a complete service history. But when someone buys their biggest asset — a house — they get a carrier bag of certificates and crossed fingers. BuildPack solves that.</p>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+        <div class="benefits-content">
+            <h2 class="section-title">Why contractors choose BuildPack</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Win repeat business</h3>
+                    <p>A professional handover document impresses clients and generates referrals. Stand out from every competitor still using carrier bags.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Proper evidence trail</h3>
+                    <p>Building control inspections, compliance certificates, product details and contractor records — all in one place, proving work was done to standard.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Simple to use on site</h3>
+                    <p>Works on desktop and mobile. Log materials, inspections and certificates as you go. No app downloads, no training required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+        <div class="how-content">
+            <h2>How it works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Log as you build</h3>
+                    <p>Fill in product details, building control inspections and contractor information throughout the project</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add certificates</h3>
+                    <p>Link to compliance documents, warranties and inspection reports — everything in one place</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Hand over with confidence</h3>
+                    <p>Present your client with a complete property record they can keep forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Request early access</h2>
+            <p class="intro">BuildPack is currently in pilot with a small group of contractors. Fill in the form below and we'll be in touch.</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Your role *</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="main-contractor">Main Contractor</option>
+                        <option value="subcontractor">Subcontractor / Trade</option>
+                        <option value="site-manager">Site Manager</option>
+                        <option value="architect">Architect</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your projects (optional)</label>
+                    <textarea id="message" name="message" placeholder="e.g. Type of work, typical project size, any specific challenges..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Request</button>
+
+                <div class="success-message" id="successMessage">
+                    ✅ Thanks for your interest! We'll be in touch shortly.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">BuildPack</div>
+            <p>Professional Handovers Made Simple</p>
+            <p style="margin-top: 1rem;">&copy; 2026 BuildPack. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                role: document.getElementById('role').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // In a real implementation, you'd send this to a server
+            // For now, we'll just log it and show success message
+            console.log('Form submission:', formData);
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Clear form
+            this.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
