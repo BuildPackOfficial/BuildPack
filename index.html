@@ -487,7 +487,7 @@
             <h2>Request early access</h2>
             <p class="intro">BuildPack is currently in pilot with a small group of contractors. Fill in the form below and we'll be in touch.</p>
             
-            <form id="contactForm">
+            <form id="contactForm" action="https://formspree.io/f/mzdaoyjb" method="POST">
                 <div class="form-group">
                     <label for="name">Your name *</label>
                     <input type="text" id="name" name="name" required>
@@ -544,35 +544,14 @@
     </footer>
 
     <script>
-        // Form handling
+        // Form handling with Formspree
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                role: document.getElementById('role').value,
-                message: document.getElementById('message').value,
-                timestamp: new Date().toISOString()
-            };
-
-            // In a real implementation, you'd send this to a server
-            // For now, we'll just log it and show success message
-            console.log('Form submission:', formData);
-
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Clear form
-            this.reset();
-
-            // Hide success message after 5 seconds
-            setTimeout(function() {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
+            // Let the form submit naturally to Formspree
+            // Show loading state on button
+            const submitBtn = this.querySelector('.submit-button');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
         });
 
         // Smooth scroll for anchor links
@@ -589,3 +568,5 @@
 
 </body>
 </html>
+
+
